@@ -1,6 +1,6 @@
 {
-  "name": "react-debounce-hook",
-  "version": "1.0.2",
+  "name": "@naba-zehra/react-debounce-hook",
+  "version": "1.0.1",
   "type": "module",
   "description": "A tiny React hook to debounce values",
   "main": "dist/index.umd.js",
@@ -12,7 +12,8 @@
   "exports": {
     ".": {
       "import": "./dist/index.es.js",
-      "require": "./dist/index.umd.js"
+      "require": "./dist/index.umd.js",
+      "types": "./dist/index.d.ts"
     }
   },
   "scripts": {

@@ -7,10 +7,25 @@ export default defineConfig({
     lib: {
       entry: "src/index.ts",
       name: "ReactDebounceInput",
-      fileName: "index",
     },
     rollupOptions: {
       external: ["react"],
+      output: [
+        {
+          format: "es",
+          entryFileNames: "index.es.js",
+          dir: "dist",
+        },
+        {
+          format: "umd",
+          entryFileNames: "index.umd.js",
+          name: "ReactDebounceInput",
+          dir: "dist",
+          globals: {
+            react: "React",
+          },
+        },
+      ],
     },
   },
 });
