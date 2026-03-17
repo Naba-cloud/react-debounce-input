@@ -1,6 +1,6 @@
 {
-  "name": "react-debounce-input",
-  "version": "1.0.0",
+  "name": "react-debounce-hook",
+  "version": "1.0.2",
   "type": "module",
   "description": "A tiny React hook to debounce values",
   "main": "dist/index.umd.js",

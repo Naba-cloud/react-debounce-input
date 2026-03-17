@@ -14,7 +14,7 @@ A tiny and simple React hook to debounce values.
 ## 📦 Installation
 
 ```bash
-npm install react-debounce-input
+npm install react-debounce-hook
 ```
 
 ---
