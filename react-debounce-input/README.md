@@ -1,73 +1,120 @@
-# React + TypeScript + Vite
+# react-debounce-input
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A tiny and simple React hook to debounce values.
 
-Currently, two official plugins are available:
+## ✨ Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+* Minimal and lightweight
+* Easy to use
+* Works with any input
+* No dependencies
 
-## React Compiler
+---
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## 📦 Installation
 
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
-
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
-
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+```bash
+npm install react-debounce-input
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+---
+
+## 🚀 Usage
+
+```jsx
+import { useState, useEffect } from "react";
+import { useDebounce } from "react-debounce-input";
+
+function Search() {
+  const [query, setQuery] = useState("");
+
+  const debouncedQuery = useDebounce(query, 500);
+
+  useEffect(() => {
+    if (!debouncedQuery) return;
+
+    console.log("API call with:", debouncedQuery);
+  }, [debouncedQuery]);
+
+  return (
+    <input
+      value={query}
+      onChange={(e) => setQuery(e.target.value)}
+      placeholder="Search..."
+    />
+  );
+}
+```
+
+---
+
+## 🧠 How It Works
+
+`useDebounce` delays updating the value until the user stops typing.
 
 ```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+const debouncedValue = useDebounce(value, delay);
 ```
+
+* `value` → current value
+* `delay` → time in milliseconds (default: 300ms)
+
+---
+
+## 📌 Example
+
+Typing:
+
+```
+a → ab → abc → abcd
+```
+
+Without debounce:
+
+```
+API called 4 times ❌
+```
+
+With debounce:
+
+```
+API called 1 time after delay ✅
+```
+
+---
+
+## ⚠️ Important
+
+Use the **debounced value** only for:
+
+* API calls
+* filtering
+* expensive operations
+
+Do NOT use it as the input value directly.
+
+---
+
+## 📄 API
+
+### `useDebounce(value, delay?)`
+
+| Parameter | Type   | Description                  |
+| --------- | ------ | ---------------------------- |
+| value     | string | Value to debounce            |
+| delay     | number | Delay in ms (default: 300ms) |
+
+---
+
+## 🛠 Example Use Cases
+
+* Search inputs
+* Live filters
+* API requests
+* Autocomplete fields
+
+---
+
+## 📃 License
+
+MIT
