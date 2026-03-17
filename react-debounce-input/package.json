@@ -1,12 +1,14 @@
 {
   "name": "react-debounce-input",
-  "version": "0.0.1",
+  "version": "1.0.0",
   "type": "module",
   "description": "A tiny React hook to debounce values",
   "main": "dist/index.umd.js",
   "module": "dist/index.es.js",
   "types": "dist/index.d.ts",
-  "files": ["dist"],
+  "files": [
+    "dist"
+  ],
   "exports": {
     ".": {
       "import": "./dist/index.es.js",
@@ -19,7 +21,12 @@
   "peerDependencies": {
     "react": ">=17"
   },
-  "keywords": ["react", "debounce", "hook", "input"],
+  "keywords": [
+    "react",
+    "debounce",
+    "hook",
+    "input"
+  ],
   "license": "MIT",
   "devDependencies": {
     "@eslint/js": "^9.39.4",
